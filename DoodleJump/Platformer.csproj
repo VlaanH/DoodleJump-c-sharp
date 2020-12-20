@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6CB8F091-6254-4A6E-A5F1-CE015D025621}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DoodleJump</RootNamespace>
-    <AssemblyName>DoodleJump</AssemblyName>
+    <RootNamespace>Platformer</RootNamespace>
+    <AssemblyName>Platformer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OpenTK, Version=3.3.1.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.3.3.1\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,36 +49,85 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Ball.cs" />
+    <Compile Include="Classes\BallController.cs" />
+    <Compile Include="Classes\Enemy.cs" />
+    <Compile Include="Classes\Enemy_Controller.cs" />
+    <Compile Include="Classes\History.cs" />
+    <Compile Include="Classes\Proceed.cs" />
+    <Compile Include="GAME_OVER.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GAME_OVER.Designer.cs">
+      <DependentUpon>GAME_OVER.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Paus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Paus.Designer.cs">
+      <DependentUpon>Paus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Physics.cs" />
     <Compile Include="Classes\Platform.cs" />
     <Compile Include="Classes\PlatformController.cs" />
     <Compile Include="Classes\Player.cs" />
+    <Compile Include="Classes\Saund.cs" />
+    <Compile Include="Classes\StaticData.cs" />
     <Compile Include="Classes\Transform.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Game.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Game.Designer.cs">
+      <DependentUpon>Game.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="GAME_OVER.resx">
+      <DependentUpon>GAME_OVER.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paus.resx">
+      <DependentUpon>Paus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Physics.resx">
+      <DependentUpon>Physics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Game.resx">
+      <DependentUpon>Game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -89,10 +141,42 @@
     <None Include="Images\back.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\platform.png" />
+    <None Include="Resources\zombie.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\man.png" />
+    <None Include="Resources\men.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Enemy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Platform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\d66c0456e41e8b69b001fc75ee5b2233.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\Dead.wav" />
+    <None Include="Music\Jump.wav" />
+    <None Include="Resources\Jump.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\DeadEnemy.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\DeadEnemy.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ball.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Music\Ball.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

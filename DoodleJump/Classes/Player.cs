@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoodleJump.Classes
+namespace Platformer.Classes
 {
     public class Player
     {
@@ -14,8 +14,8 @@ namespace DoodleJump.Classes
 
         public Player()
         {
-            sprite = Properties.Resources.man;
-            physics = new Physics(new PointF(100, 350), new Size(40, 40));
+            sprite = Platformer.Properties.Resources.men;
+            physics = new Physics(new PointF(100, 250), new Size(30, 30));
         }
 
         public void DrawSprite(Graphics g)

@@ -4,52 +4,65 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Ball.Classes;
+using Platformer.Classes;
 
-namespace DoodleJump.Classes
+
+namespace Platformer.Classes
 {
-     public static class PlatformController
+    public static class PlatformController
     {
         public static List<Platform> platforms;
-        public static int startPlatformPosY = 400;
+        public static int startPlatformPosY = 600;
         public static int score = 0;
 
         public static void AddPlatform(PointF position)
         {
             Platform platform = new Platform(position);
             platforms.Add(platform);
+
+
+
         }
 
-        public static void GenerateStartSequence()
+     
+        
+        public async static void GenerateRandomPlatform()
         {
-            Random r = new Random();
-            for(int i = 0; i < 10; i++)
+
+
+
+
+
+            for (int i = 0; i < platforms.Count; i++)
             {
-                int x = r.Next(0, 270);
-                int y = r.Next(30, 40);
-                startPlatformPosY -= y;
-                PointF position = new PointF(x, startPlatformPosY);
-                Platform platform = new Platform(position);
-                platforms.Add(platform);
-            }
-        }
+                if (platforms[i].transform.position.Y >= 600)
+                {
+                    platforms.RemoveAt(i);
 
-        public static void GenerateRandomPlatform()
-        {
-            ClearPlatforms();
+
+                }
+            }
+
+
             Random r = new Random();
-            int x = r.Next(0,270);
-            PointF position = new PointF(x, startPlatformPosY);
+
+
+
+           
+            int x = r.Next(55, 600);
+            int y = r.Next(10, 60);
+            PointF position = new PointF(x, y);
             Platform platform = new Platform(position);
             platforms.Add(platform);
+
+
+          
+
+
         }
 
-        public static void ClearPlatforms()
-        {
-            for(int i = 0; i < platforms.Count; i++)
-            {
-                if (platforms[i].transform.position.Y >= 700)
-                    platforms.RemoveAt(i);
-            }
-        }
+        
     }
 }

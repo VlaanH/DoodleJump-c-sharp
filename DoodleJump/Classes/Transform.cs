@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoodleJump.Classes
+namespace Platformer.Classes
 {
     public class Transform
     {
